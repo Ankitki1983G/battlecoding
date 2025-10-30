@@ -11,7 +11,7 @@ body {
 }
 
 .phone {
-    width: 380px;
+    width: 400px;
     max-width: 95vw;
     border: 7px solid #000;
     border-radius: 32px;
@@ -282,4 +282,27 @@ body {
 
 .dark-mode .screen {
     background: linear-gradient(180deg, #5e42ff 0%, #9b7fff 60%);
+}
+
+/* Hide phone frame on small screens (like real phones) */
+@media (max-width: 600px) {
+    body {
+        padding: 0;
+        background: #fff;
+        /* remove outer grey background */
+        align-items: stretch;
+    }
+
+    .phone {
+        width: 100%;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .screen {
+        min-height: 100vh;
+        border-radius: 0;
+        padding: 10px;
+    }
 }

@@ -50,6 +50,33 @@ signupForm && (signupForm.onsubmit = function (e) {
     signupBtn.classList.remove("d-none");
 });
 
+// "Student Login form" link par click hone par form toggle kare
+var studentLoginLinks = document.querySelectorAll(".std.login");
+
+studentLoginLinks.forEach(function (link) {
+    link.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        // Agar signup box active hai → login box show kare
+        if (signupBox.classList.contains("active")) {
+            signupBox.classList.remove("active");
+            loginBox.classList.add("active");
+
+            loginBtn.classList.add("d-none");
+            signupBtn.classList.remove("d-none");
+        }
+        // Agar login box active hai → signup box show kare
+        else {
+            signupBox.classList.add("active");
+            loginBox.classList.remove("active");
+
+            loginBtn.classList.remove("d-none");
+            signupBtn.classList.add("d-none");
+        }
+    });
+});
+
+
 // Login (Direct, No OTP)
 var loginForm = document.querySelector(".login-form");
 loginForm && (loginForm.onsubmit = function (e) {
