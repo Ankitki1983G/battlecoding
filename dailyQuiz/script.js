@@ -107,10 +107,25 @@ function loadQuestion() {
   timer = setInterval(() => {
     timeLeft--;
     updateTimerDisplay();
-    if (timeLeft <= 0) {
-      clearInterval(timer);
-      markWrongAndNext(q.answer);
-    }
+   if (timeLeft <= 0) {
+  clearInterval(timer);
+  timerEl.textContent = "⏰ Time's up!";
+  // Disable all buttons but don't show correct answer
+  const buttons = document.querySelectorAll(".option-btn");
+  buttons.forEach(b => (b.disabled = true));
+
+  // Wait for user to click "Next" button manually
+  const nextBtn = document.createElement("button");
+  nextBtn.textContent = "Next Question ➡️";
+  nextBtn.classList.add("btn", "btn-primary", "mt-3", "w-100");
+  nextBtn.addEventListener("click", () => {
+    currentIndex++;
+    nextBtn.remove();
+    loadQuestion();
+  });
+  optionsEl.appendChild(nextBtn);
+}
+
   }, 1000);
 }
 
